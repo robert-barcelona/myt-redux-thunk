@@ -1,9 +1,17 @@
-import {GET_GENRE_SUCCESS, GET_MOVIES_SUCCESS, ERROR,GET_MOVIE_DETAIL_SUCCESS, CALLING_API} from "./action-types"
+import {
+  GET_GENRE_SUCCESS,
+  GET_MOVIES_SUCCESS,
+  ERROR,
+  GET_MOVIE_DETAIL_SUCCESS,
+  CALLING_API,
+  CLEAR_MOVIES
+} from "./action-types"
 import axios from 'axios'
 import * as Debug from 'debug'
 const debug = Debug('action-creators')
 
 
+export const clearMovies = () => ({type:CLEAR_MOVIES})
 
 export const callingAPI = () => ({type:CALLING_API})
 export const error = () => ({type:ERROR})
@@ -29,6 +37,7 @@ export const getMoviesSuccess = (movies,genre) => ({ type: GET_MOVIES_SUCCESS, d
 export const getMoviesByGenre = (genre) => async (dispatch) => {
   try {
     dispatch(callingAPI())
+    dispatch(clearMovies())
     debug('about to fetch movies by genre',genre)
 
     const data = await axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre}&api_key=${process.env.API_KEY}`)
