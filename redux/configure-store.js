@@ -3,10 +3,10 @@ import thunk from 'redux-thunk';
 import * as Debug from 'debug';
 import rootReducer from './root-reducer';
 
-// log.setLevel('silent');
 const debug = Debug('store');
 debug('debugging store.js');
 
+import { initialState} from "./root-reducer"
 
 const bindMiddleware = middleware => {
   if (process.env.NODE_ENV !== 'production') {
@@ -16,7 +16,7 @@ const bindMiddleware = middleware => {
   return applyMiddleware(...middleware);
 };
 
-function configureStore(initialState = {}) {
+function configureStore(initialState = initialState) {
   const store = createStore(
     rootReducer,
     initialState,
