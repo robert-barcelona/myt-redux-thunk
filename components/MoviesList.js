@@ -29,7 +29,17 @@ class MoviesList extends Component {
 </span>
 
 <ul>
-      {movies && movies.length && movies.map(movie => <li key={movie.id}><a href='#' onClick={(e) => this.movieClick(e,movie.id)} >{movie.title}</a></li>)}
+      {movies && movies.length && movies.map(movie => <li key={movie.id}>
+        <div className="card">
+          <div className="card-content">
+
+
+          <a href='#' onClick={(e) => this.movieClick(e,movie.id)} >{movie.title}
+          {movie.poster_path && <p><img src={`http://image.tmdb.org/t/p/w154/${movie.poster_path}`} alt={movie.original_title}/></p>}
+      </a>
+          </div>
+        </div>
+          </li>)}
     </ul>
       <Waypoint onEnter={({ previousPosition, currentPosition, event }) => {
         debug('waypoint entered', previousPosition, currentPosition, event,isLoading)
