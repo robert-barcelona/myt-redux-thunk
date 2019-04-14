@@ -4,6 +4,8 @@ import App, {Container} from 'next/app'
 import withRedux from 'next-redux-wrapper'
 import configureStore from '../redux/configure-store'
 import Debug from 'debug'
+import Head from 'next/head'
+
 const debug = Debug('app')
 
 class MyApp extends App {
@@ -22,11 +24,18 @@ class MyApp extends App {
     return (
       <Container>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <Head>
+            <title>Movie Picker 3000</title>
+            <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"/>
+            <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+          </Head>
+          <Component  {...pageProps} />
         </Provider>
       </Container>
     )
   }
 }
 
-export default withRedux(configureStore, { debug: true })(MyApp);
+export default withRedux(configureStore, {debug: false})(MyApp);

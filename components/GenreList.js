@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import * as Debug from 'debug'
-import {getMoviesByGenre} from "../redux/action-creators"
+import {getMoviesByGenre,changeLocation} from "../redux/action-creators"
 
 const debug = Debug('genrelist')
 
@@ -9,16 +9,18 @@ class GenreList extends Component {
 
   genreClick = (e,genre) => {
     e.preventDefault()
-    debug('click',genre)
+    this.props.changeLocation('movies')
     this.props.getMoviesByGenre(genre)
   }
 
   render() {
     const {props: {genres}} = this
 
-    return <ul>
+    return <div>
+      <p className='is-size-2 has-text-warning'>Choose A Genre</p>
+      <ul>
       {genres && genres.length && genres.map(genre => <li key={genre.id}><a href='#' onClick={(e) => this.genreClick(e,genre.id)} >{genre.name}</a></li>)}
-    </ul>
+    </ul></div>
 
   }
 }
@@ -27,6 +29,7 @@ class GenreList extends Component {
 
 const actionCreators = {
   getMoviesByGenre,
+  changeLocation,
 }
 
 const mapStateToProps = (state, ownProps) => {
