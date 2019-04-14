@@ -5,6 +5,7 @@ import withRedux from 'next-redux-wrapper'
 import configureStore from '../redux/configure-store'
 import Debug from 'debug'
 import Head from 'next/head'
+import Header from '../components/Header'
 
 const debug = Debug('app')
 
@@ -31,6 +32,7 @@ class MyApp extends App {
             <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
           </Head>
+          <Header/>
           <Component  {...pageProps} />
         </Provider>
       </Container>

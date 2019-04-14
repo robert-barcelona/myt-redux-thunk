@@ -16,11 +16,7 @@ const MovieDetail = props => {
       <span  onClick={() => changeLocation('movies')} className="icon">
   <i  className="fas fa-2x fa-arrow-circle-left"></i>
 </span>
-
-
-
     <div className="card">
-
       <div className="card-content">
         {poster_path ? <div className="media">
           <div className="media-left">
