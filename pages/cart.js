@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import * as Debug from 'debug'
+import MovieListItem from "../components/MovieListItem"
 
 
 
@@ -17,7 +18,8 @@ class Cart extends Component {
 
       <div className="container">
         <ul>
-        {items.map((item,i) =><li key={item.id}>{i+1}. {item.title}</li>)}
+        {items.map((item,i) =><li key={i}><MovieListItem title={item.title} poster={item.poster_path} id={item.id}   />
+        </li>)}
         </ul>
       </div>
     </section>

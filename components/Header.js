@@ -1,11 +1,14 @@
-import react from 'react'
+import React from 'react'
+import {connect} from 'react-redux'
 import Link from 'next/link'
 
-const Header = () => (
+import {changeLocation} from "../redux/action-creators"
+
+const Header = props => (
   <section className='section'>
   <div className='container'>
-    <Link href="/">
-      <a>Choose Movies  <i className="fas  fa-search"></i></a>
+    <Link  href="/">
+      <a  >Movies  <i className="fas  fa-search"></i></a>
     </Link>
 &nbsp;
 &nbsp;
@@ -18,4 +21,6 @@ const Header = () => (
   </section>
 )
 
-export default Header
+
+
+export default connect(null,{changeLocation})(Header)

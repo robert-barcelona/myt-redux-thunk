@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import * as Debug from 'debug'
-import {addMovieToCart,changeLocation} from "../redux/action-creators"
+import swal from 'sweetalert';
+
+import {addMovieToCart, changeLocation} from "../redux/action-creators"
 
 const debug = Debug('movie-detail')
 
@@ -9,13 +11,13 @@ const debug = Debug('movie-detail')
 const MovieDetail = props => {
 
 
-
-  const {changeLocation,addMovieToCart,movieDetail: {original_title, overview, poster_path, release_date, vote_average,id}} = props
+  const {changeLocation, addMovieToCart, movieDetail: {original_title, overview, poster_path, release_date, vote_average, id}} = props
 
   return (<div>
-      <span  onClick={() => changeLocation('movies')} className="icon">
-  <i  className="fas fa-2x fa-arrow-circle-left"></i>
+      <span onClick={() => changeLocation('movies')} className="icon">
+  <i className="fas fa-2x fa-arrow-circle-left"></i>
 </span>
+
     <div className="card">
       <div className="card-content">
         {poster_path ? <div className="media">
@@ -27,17 +29,18 @@ const MovieDetail = props => {
           <div className="media-content">
             <p className="title is-4">{original_title}</p>
           </div>
-        </div>: <p>No image provided</p>}
+        </div> : <p>No image provided</p>}
 
         <div className="content">
-          Description: {overview ?  overview : 'No description'}
+          Description: {overview ? overview : 'No description'}
           <br/>
-            <time dateTime="2016-1-1">Release date: {release_date}</time>
+          <time dateTime="2016-1-1">Release date: {release_date}</time>
           <p className="">Average Rating: {vote_average}</p>
-  <br/>
-          <span onClick={() =>
-            addMovieToCart(original_title, id)
-          } className="icon">
+          <br/>
+          <span onClick={() => {
+            addMovieToCart(original_title, id, poster_path)
+            swal('Now we have some movies to watch!', `"${original_title}" was added to the cart`,'success')
+          }} className="icon">
       <i className="fas fa-2x  fa-cart-plus"></i>
       </span>
 
