@@ -1,45 +1,46 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import * as Debug from 'debug'
+import {getMoviesByGenre,changeLocation} from "../redux/action-creators"
 
-const debug = Debug('GenreList')
-import {getMoviesByGenre} from '../redux/action-creators'
+const debug = Debug('genrelist')
 
 class GenreList extends Component {
 
   genreClick = (e,genre) => {
     e.preventDefault()
-    getMoviesByGenre()
-    debug('click',genre)
+    this.props.changeLocation('movies')
+    this.props.getMoviesByGenre(genre)
   }
 
   render() {
-    debug('genre')
     const {props: {genres}} = this
 
-    return <ul>
-      {genres && genres.length && genres.map(genre => <li key={genre.id}><a href='#' onClick={(e) => this.genreClick(e,genre.id)} >{genre.name}</a></li>)}
-    </ul>
-
+    return <div>
+      <p className='is-size-2 has-text-warning'>Choose A Genre</p>
+      <p>&nbsp;</p>
+      <ul>
+      {genres && genres.length ? genres.map(genre => <li key={genre.id}><a href='#' onClick={(e) => this.genreClick(e,genre.id)} >{genre.name}</a></li>): 'Loading...'}
+    </ul></div>
 
   }
-
-
 }
 
-const mapDispatchToProps = {
+
+
+const actionCreators = {
   getMoviesByGenre,
+  changeLocation,
 }
 
 const mapStateToProps = (state, ownProps) => {
-  debug('state', state)
   return ({
-    genres: state.genre.data.genres
+    genres: state.genre.genres
   })
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  actionCreators,
 )(GenreList)
 
