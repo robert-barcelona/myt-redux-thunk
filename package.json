@@ -1,7 +1,7 @@
 {
   "name": "create-next-example-app",
   "scripts": {
-    "dev": "DEBUG=app,movie-detail,movieDetail-reducer,items-reducer,store,movielist,genrelist,action-creators,index,root-saga next",
+    "dev": "DEBUG= next",
     "build": "next build",
     "start": "next start"
   },
