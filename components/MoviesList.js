@@ -24,6 +24,7 @@ class MoviesList extends Component {
 
     return <div>
       <p className='is-size-2 has-text-warning'>Choose A Movie</p>
+      <p>&nbsp;</p>
 
       <span onClick={() => changeLocation('genres')} className="icon">
   <i className="fas fa-2x fa-arrow-circle-left"></i>
