@@ -30,9 +30,9 @@ class MoviesList extends Component {
 </span>
 
       <ul>
-        {movies && movies.length && movies.map(movie => <li key={movie.id}>
+        {movies && movies.length ? movies.map(movie => <li key={movie.id}>
           <MovieListItem title={movie.title} poster={movie.poster_path} id={movie.id} clickFunc={this.movieClick}  />
-        </li>)}
+        </li>) : 'Loading...'}
       </ul>
       <Waypoint onEnter={({previousPosition, currentPosition, event}) => {
         debug('waypoint entered', previousPosition, currentPosition, event, isLoading)

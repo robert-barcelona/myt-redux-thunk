@@ -19,7 +19,7 @@ class GenreList extends Component {
     return <div>
       <p className='is-size-2 has-text-warning'>Choose A Genre</p>
       <ul>
-      {genres && genres.length && genres.map(genre => <li key={genre.id}><a href='#' onClick={(e) => this.genreClick(e,genre.id)} >{genre.name}</a></li>)}
+      {genres && genres.length ? genres.map(genre => <li key={genre.id}><a href='#' onClick={(e) => this.genreClick(e,genre.id)} >{genre.name}</a></li>): 'Loading...'}
     </ul></div>
 
   }
